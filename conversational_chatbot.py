@@ -201,6 +201,6 @@ while true:
             #print( "Bot:" +decoded_translation.replace(' end', '') )
             st.write('BOT:', decoded_translation.replace(' end', ''))
             print()
-    catch:
+    except:
         print("error")
       
