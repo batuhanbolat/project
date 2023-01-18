@@ -172,7 +172,7 @@ def str_to_tokens( sentence : str ):
         tokens_list.append( input_word_dict[ word ] ) 
     return preprocessing.sequence.pad_sequences( [tokens_list] , maxlen=max_input_length , padding='post')
 
-while true:
+while True:
     try:
         enc_model , dec_model = make_inference_models()
         text=st.text_input("User: ",key="placeholder")
