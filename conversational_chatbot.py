@@ -21,13 +21,13 @@ import streamlit as st
 import pandas as pd
 
 
-print( tf.version)
+#print( tf.version)
 
-"""## Read the data"""
+#"""## Read the data"""
 
 data_path='chatbot-training-dataset'
 
-"""since data path is a directory to access it i  have used the following lines to extract it"""
+#"""since data path is a directory to access it i  have used the following lines to extract it"""
 
 import os
 data_paths = [os.path.join(pth, f) 
@@ -46,15 +46,15 @@ for line in lines[: min(600, len(lines) - 1)]:
     input_texts.append(input_text)
     target_texts.append(target_text)
 
-print('type of input_text',type(input_text))
-print('type of target_texts',type(target_texts))
+#print('type of input_text',type(input_text))
+#print('type of target_texts',type(target_texts))
 
 ##converting the list in pandas dataframe since input_text,target_text are both are type of list
 zippedList =  list(zip(input_texts, target_texts))
 lines = pd.DataFrame(zippedList, columns = ['input' , 'output']) 
 lines.head()
 
-"""## Preparing input data for the Encoder"""
+#"""## Preparing input data for the Encoder"""
 
 input_lines = list()
 for line in lines.input:
@@ -68,21 +68,21 @@ length_list = list()
 for token_seq in tokenized_input_lines:
     length_list.append( len( token_seq ))
 max_input_length = np.array( length_list ).max()
-print( 'Input max length is {}'.format( max_input_length ))
+#print( 'Input max length is {}'.format( max_input_length ))
 
 padded_input_lines = preprocessing.sequence.pad_sequences( tokenized_input_lines , maxlen=max_input_length , padding='post' )
 encoder_input_data = np.array( padded_input_lines )
-print( 'Encoder input data shape -> {}'.format( encoder_input_data.shape ))
+#print( 'Encoder input data shape -> {}'.format( encoder_input_data.shape ))
 
 input_word_dict = tokenizer.word_index
 num_input_tokens = len( input_word_dict )+1
-print( 'Number of Input tokens = {}'.format( num_input_tokens))
+#print( 'Number of Input tokens = {}'.format( num_input_tokens))
 
 encoder_input_data
 
-"""## Preparing input data for the Decoder
+#"""## Preparing input data for the Decoder
 
-"""
+#"""
 
 output_lines = list()
 for line in lines.output:
@@ -96,17 +96,17 @@ length_list = list()
 for token_seq in tokenized_output_lines:
     length_list.append( len( token_seq ))
 max_output_length = np.array( length_list ).max()
-print( 'Output max length is {}'.format( max_output_length ))
+#print( 'Output max length is {}'.format( max_output_length ))
 
 padded_output_lines = preprocessing.sequence.pad_sequences( tokenized_output_lines , maxlen=max_output_length, padding='post' )
 decoder_input_data = np.array( padded_output_lines )
-print( 'Decoder input data shape -> {}'.format( decoder_input_data.shape ))
+#print( 'Decoder input data shape -> {}'.format( decoder_input_data.shape ))
 
 output_word_dict = tokenizer.word_index
 num_output_tokens = len( output_word_dict )+1
-print( 'Number of Output tokens = {}'.format( num_output_tokens))
+#print( 'Number of Output tokens = {}'.format( num_output_tokens))
 
-"""## Preparing target data for the Decoder """
+#"""## Preparing target data for the Decoder """
 
 decoder_target_data = list()
 for token_seq in tokenized_output_lines:
