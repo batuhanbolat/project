@@ -16,7 +16,9 @@ import os
 import numpy as np
 import tensorflow as tf
 from tensorflow.keras import layers , activations , models , preprocessing , utils
+from tensorflow.keras.models import load_model
 import pandas as pd
+
 
 print( tf.version)
 
@@ -137,9 +139,9 @@ model.summary()
 
 """## Training"""
 
-model.fit([encoder_input_data , decoder_input_data], decoder_target_data, batch_size=124, epochs=500) 
-model.save( 'model.h5' )
-
+#model.fit([encoder_input_data , decoder_input_data], decoder_target_data, batch_size=124, epochs=500) 
+#model.save( 'model.h5' )
+model=load_model('model.h5')
 """## Inference models"""
 
 def make_inference_models():
