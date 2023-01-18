@@ -52,7 +52,7 @@ for line in lines[: min(600, len(lines) - 1)]:
 ##converting the list in pandas dataframe since input_text,target_text are both are type of list
 zippedList =  list(zip(input_texts, target_texts))
 lines = pd.DataFrame(zippedList, columns = ['input' , 'output']) 
-lines.head()
+#lines.head()
 
 #"""## Preparing input data for the Encoder"""
 
@@ -115,11 +115,11 @@ for token_seq in tokenized_output_lines:
 padded_output_lines = preprocessing.sequence.pad_sequences( decoder_target_data , maxlen=max_output_length, padding='post' )
 onehot_output_lines = utils.to_categorical( padded_output_lines , num_output_tokens )
 decoder_target_data = np.array(onehot_output_lines )
-print( 'Decoder target data shape -> {}'.format( decoder_target_data.shape ))
+#print( 'Decoder target data shape -> {}'.format( decoder_target_data.shape ))
 
-"""## Defining the Model
+#"""## Defining the Model
 
-"""
+#"""
 
 encoder_inputs = tf.keras.layers.Input(shape=( None , ))
 encoder_embedding = tf.keras.layers.Embedding( num_input_tokens, 256 , mask_zero=True ) (encoder_inputs)
@@ -138,12 +138,12 @@ model.compile(optimizer=tf.keras.optimizers.Adam(), loss='categorical_crossentro
 
 model.summary()
 
-"""## Training"""
+#"""## Training"""
 
 #model.fit([encoder_input_data , decoder_input_data], decoder_target_data, batch_size=124, epochs=500) 
 #model.save( 'model.h5' )
 model=load_model('model.h5')
-"""## Inference models"""
+#"""## Inference models"""
 
 def make_inference_models():
     
