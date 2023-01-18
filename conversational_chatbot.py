@@ -78,7 +78,7 @@ input_word_dict = tokenizer.word_index
 num_input_tokens = len( input_word_dict )+1
 #print( 'Number of Input tokens = {}'.format( num_input_tokens))
 
-encoder_input_data
+#encoder_input_data
 
 #"""## Preparing input data for the Decoder
 
