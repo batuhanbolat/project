@@ -174,7 +174,7 @@ def str_to_tokens( sentence : str ):
 
 enc_model , dec_model = make_inference_models()
 for epoch in range( encoder_input_data.shape[0] ):
-    states_values = enc_model.predict( str_to_tokens( st.text_input("User: ") ) )
+    states_values = enc_model.predict( str_to_tokens( st.text_input("User: ",key="placeholder") ) )
     empty_target_seq = np.zeros( ( 1 , 1 ) )
     empty_target_seq[0, 0] = output_word_dict['start']
     stop_condition = False
