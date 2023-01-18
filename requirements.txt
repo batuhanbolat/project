@@ -1,4 +1,3 @@
-tensorflow
-pandas 
-numpy
-os
+numpy==1.24.1
+pandas==1.5.2
+tensorflow==2.11.0
