@@ -17,6 +17,7 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras import layers , activations , models , preprocessing , utils
 from tensorflow.keras.models import load_model
+import streamlit as st
 import pandas as pd
 
 
@@ -173,7 +174,7 @@ def str_to_tokens( sentence : str ):
 
 enc_model , dec_model = make_inference_models()
 for epoch in range( encoder_input_data.shape[0] ):
-    states_values = enc_model.predict( str_to_tokens( input( 'User: ' ) ) )
+    states_values = enc_model.predict( str_to_tokens( st.text_input('Movie title', 'Life of Brian') ) )
     empty_target_seq = np.zeros( ( 1 , 1 ) )
     empty_target_seq[0, 0] = output_word_dict['start']
     stop_condition = False
@@ -194,5 +195,6 @@ for epoch in range( encoder_input_data.shape[0] ):
         empty_target_seq[ 0 , 0 ] = sampled_word_index
         states_values = [ h , c ] 
 
-    print( "Bot:" +decoded_translation.replace(' end', '') )
+    #print( "Bot:" +decoded_translation.replace(' end', '') )
+    st.write('The current movie title is', decoded_translation.replace(' end', ''))
     print()
